@@ -27,4 +27,4 @@ python3 \
 sed \
 tar \
 texinfo \
-xz
+xz-utils
