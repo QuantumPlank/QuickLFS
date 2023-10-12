@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 WORK_DIR=$(pwd)
 IMAGE_NAME=u20lfs

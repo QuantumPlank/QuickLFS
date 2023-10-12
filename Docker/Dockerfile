@@ -28,3 +28,5 @@ sed \
 tar \
 texinfo \
 xz-utils
+
+COPY start_check.sh /usr/
