@@ -22,6 +22,5 @@ docker run \
 	-v $WORK_DIR/.home:/home/${USER} \
 	-v /etc/passwd:/etc/passwd:ro \
 	-v /etc/group:/etc/group:ro \
-	-u $(id -u ${USER}):$(id -g ${USER}) \
 	$IMAGE_NAME \
 	/bin/bash

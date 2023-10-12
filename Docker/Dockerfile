@@ -27,7 +27,8 @@ python3 \
 sed \
 tar \
 texinfo \
-xz-utils
+xz-utils \
+sudo
 
 RUN \
 ln -sf /usr/bin/bash /usr/bin/sh; \
@@ -35,3 +36,11 @@ ln -sf /usr/bin/bison /usr/bin/yacc; \
 ln -sf /usr/bin/gawk /usr/bin/awk;
 
 COPY requirements_check.sh /usr/
+
+RUN adduser --disabled-password --gecos '' lfs_user
+RUN adduser lfs_user sudo
+RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER lfs_user
+
+
