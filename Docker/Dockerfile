@@ -34,4 +34,4 @@ ln -sf /usr/bin/bash /usr/bin/sh; \
 ln -sf /usr/bin/bison /usr/bin/yacc; \
 ln -sf /usr/bin/gawk /usr/bin/awk;
 
-COPY start_check.sh /usr/
+COPY requirements_check.sh /usr/

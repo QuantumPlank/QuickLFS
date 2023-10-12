@@ -4,6 +4,8 @@
 # If you have tools installed in other directories, adjust PATH here AND
 # in ~lfs/.bashrc (section 4.4) as well.
 
+cd ~
+
 LC_ALL=C 
 PATH=/usr/bin:/bin
 
@@ -82,3 +84,5 @@ if printf "int main(){}" | g++ -x c++ -
 then echo "OK:    g++ works";
 else echo "ERROR: g++ does NOT work"; fi
 rm -f a.out
+
+cd -
