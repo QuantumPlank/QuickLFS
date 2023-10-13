@@ -37,10 +37,10 @@ ln -sf /usr/bin/gawk /usr/bin/awk;
 
 COPY requirements_check.sh /usr/
 
-RUN adduser --disabled-password --gecos '' lfs_user
-RUN adduser lfs_user sudo
+RUN adduser --disabled-password --gecos '' lfs
+RUN adduser lfs sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN echo 'export LFS=/mnt/lfs' >> /home/lfs/.bash_profile
+RUN echo 'export LFS=/mnt/lfs' >> /root/.bash_profile
 
-USER lfs_user
-
-
+USER lfs
