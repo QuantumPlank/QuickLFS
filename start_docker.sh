@@ -9,6 +9,13 @@ if [[ "$DRIVE" = "" ]]; then
 	exit 1
 fi
 
+USER=$2
+
+if [[ "$DRIVE" = "" ]]; then
+	echo "Must specify a user for the container"
+	exit 1
+fi
+
 IMAGE_NAME=u20lfs
 IMAGE_SHA=($(sha1sum Docker/Dockerfile))
 IMAGE=$IMAGE_NAME:$IMAGE_SHA
@@ -35,7 +42,7 @@ echo "Starting Docker Container"
 docker run \
 	-it \
 	--rm \
-	-u lfs \
+	-u $USER \
 	-v /mnt/lfs:/mnt/lfs  \
 	$IMAGE \
 	/bin/bash
