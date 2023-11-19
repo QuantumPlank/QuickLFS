@@ -42,21 +42,13 @@ RUN apt install -y \
 vim \
 wget
 
-# Copy utility scripts to docker fs
-COPY scripts/* /usr/
-
-# Manage lfs user
+# Create lfs user
 RUN adduser --disabled-password --gecos '' lfs
 RUN adduser lfs sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-# Export LFS variable
-RUN echo 'export LFS=/mnt/lfs' >> /home/lfs/.bashrc
-RUN echo 'export LFS=/mnt/lfs' >> /root/.bashrc
+# Copy utility scripts to docker fs
+COPY scripts/* /usr/
 
-# Apply check for any session
-RUN echo 'source /usr/requirements_check.sh' >> /home/lfs/.bashrc
-RUN echo 'source /usr/requirements_check.sh' >> /root/.bashrc
-
-# Change to lfs user
-USER lfs
+# Copy utility files to docker fs
+COPY files/* /home/lfs

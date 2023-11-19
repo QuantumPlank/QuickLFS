@@ -35,6 +35,7 @@ echo "Starting Docker Container"
 docker run \
 	-it \
 	--rm \
+	-u lfs \
 	-v /mnt/lfs:/mnt/lfs  \
 	$IMAGE \
 	/bin/bash
