@@ -8,7 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 
-# Installing Host packages
+# Install Host packages
 RUN apt install -y \
 bash \
 binutils \
@@ -31,11 +31,15 @@ texinfo \
 xz-utils \
 sudo
 
-# Creating symlinks
+# Create symlinks
 RUN \
 ln -sf /usr/bin/bash /usr/bin/sh; \
 ln -sf /usr/bin/bison /usr/bin/yacc; \
 ln -sf /usr/bin/gawk /usr/bin/awk;
+
+# Install additional utilities
+RUN apt install -y \
+vim
 
 # Copy checkfile to docker fs
 COPY requirements_check.sh /usr/

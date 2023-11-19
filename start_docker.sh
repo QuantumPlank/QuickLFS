@@ -4,6 +4,11 @@ WORK_DIR=$(pwd)
 
 DRIVE=$1
 
+if [[ "$DRIVE" = "" ]]; then
+	echo "Must specify a drive to mount"
+	exit 1
+fi
+
 IMAGE_NAME=u20lfs
 IMAGE_SHA=($(sha1sum Docker/Dockerfile))
 IMAGE=$IMAGE_NAME:$IMAGE_SHA
@@ -18,7 +23,13 @@ if [[ "$(docker images -q $IMAGE 2> /dev/null)" == "" ]]; then
 fi
 
 echo "Mounting drive"
-sudo mount $DRIVE /mnt/lfs
+if [[ $(mount | grep $DRIVE) = "" ]]; then
+	sudo mount $DRIVE /mnt/lfs
+	if [[ $? -ne 0 ]]; then
+		echo "Mount failed"
+		exit 1
+	fi
+fi
 
 echo "Starting Docker Container"
 docker run \
