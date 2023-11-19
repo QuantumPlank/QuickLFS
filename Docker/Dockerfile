@@ -8,6 +8,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 
+# Installing Host packages
 RUN apt install -y \
 bash \
 binutils \
@@ -30,17 +31,27 @@ texinfo \
 xz-utils \
 sudo
 
+# Creating symlinks
 RUN \
 ln -sf /usr/bin/bash /usr/bin/sh; \
 ln -sf /usr/bin/bison /usr/bin/yacc; \
 ln -sf /usr/bin/gawk /usr/bin/awk;
 
+# Copy checkfile to docker fs
 COPY requirements_check.sh /usr/
 
+# Manage lfs user
 RUN adduser --disabled-password --gecos '' lfs
 RUN adduser lfs sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-RUN echo 'export LFS=/mnt/lfs' >> /home/lfs/.bash_profile
-RUN echo 'export LFS=/mnt/lfs' >> /root/.bash_profile
 
+# Export LFS variable
+RUN echo 'export LFS=/mnt/lfs' >> /home/lfs/.bashrc
+RUN echo 'export LFS=/mnt/lfs' >> /root/.bashrc
+
+# Apply check for any session
+RUN echo 'source /usr/requirements_check.sh' >> /home/lfs/.bashrc
+RUN echo 'source /usr/requirements_check.sh' >> /root/.bashrc
+
+# Change to lfs user
 USER lfs
