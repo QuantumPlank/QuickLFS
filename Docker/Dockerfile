@@ -39,10 +39,11 @@ ln -sf /usr/bin/gawk /usr/bin/awk;
 
 # Install additional utilities
 RUN apt install -y \
-vim
+vim \
+wget
 
-# Copy checkfile to docker fs
-COPY requirements_check.sh /usr/
+# Copy utility scripts to docker fs
+COPY scripts/* /usr/
 
 # Manage lfs user
 RUN adduser --disabled-password --gecos '' lfs
