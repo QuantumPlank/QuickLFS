@@ -49,5 +49,6 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN rm -rf /etc/bash.bashrc
 
 # Copy utility files/scripts to docker fs
+COPY files/* /root
 COPY files/* /home/lfs
 COPY scripts/* /usr/
