@@ -46,9 +46,8 @@ wget
 RUN adduser --disabled-password --gecos '' lfs
 RUN adduser lfs sudo
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+RUN rm -rf /etc/bash.bashrc
 
-# Copy utility scripts to docker fs
-COPY scripts/* /usr/
-
-# Copy utility files to docker fs
+# Copy utility files/scripts to docker fs
 COPY files/* /home/lfs
+COPY scripts/* /usr/
