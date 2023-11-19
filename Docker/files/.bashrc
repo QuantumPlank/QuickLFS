@@ -1,3 +1,10 @@
+# Enable make multiple jobs
+alias make="make -j $(nproc --all)"
+
+# Check environment requirements
+source /usr/requirements_check.sh
+
+# Set environment
 set +h
 umask 022
 LFS=/mnt/lfs
@@ -8,5 +15,3 @@ if [ ! -L /bin ]; then PATH=/bin:$PATH; fi
 PATH=$LFS/tools/bin:$PATH
 CONFIG_SITE=$LFS/usr/share/config.site
 export LFS LC_ALL LFS_TGT PATH CONFIG_SITE
-
-source /usr/requirements_check.sh
