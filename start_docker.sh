@@ -44,5 +44,6 @@ docker run \
 	--rm \
 	-u $USER \
 	-v /mnt/lfs:/mnt/lfs  \
+	--privileged \
 	$IMAGE \
 	/bin/bash
