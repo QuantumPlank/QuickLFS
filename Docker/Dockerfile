@@ -8,6 +8,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
 
+ENV LFS="/mnt/lfs"
+ENV LC_ALL="POSIX"
+ENV LFS_TGT="$(uname -m)-lfs-linux-gnu"
+RUN alias make="make -j $(nproc --all)"
+
 # Install Host packages
 RUN apt install -y \
 bash \
@@ -49,6 +54,5 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 RUN rm -rf /etc/bash.bashrc
 
 # Copy utility files/scripts to docker fs
-COPY files/* /root
 COPY files/* /home/lfs
 COPY scripts/* /usr/

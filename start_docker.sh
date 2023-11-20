@@ -11,7 +11,7 @@ fi
 
 USER=$2
 
-if [[ "$DRIVE" = "" ]]; then
+if [[ "$USER" = "" ]]; then
 	echo "Must specify a user for the container"
 	exit 1
 fi
